@@ -12,14 +12,14 @@ namespace EcommercePersistence
           : base(options)
         {
            
-        }     
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-           // modelBuilder.Entity<Customer>().HasIndex(prop => prop.Email).IsUnique();
-           // modelBuilder.Entity<Wallet>().HasIndex(prop => prop.).IsUnique();
-
+            var product1 = Product.Create("P1", 10, new Guid("08ac377c-ba18-40ab-a496-a5286185036d"),200);
+            modelBuilder.Entity<Product>().HasData(product1);
+            var product2 = Product.Create("P2", 10, new Guid("cc4b3750-9b7d-4a43-9c99-045642717cca"),100);
+            modelBuilder.Entity<Product>().HasData(product2);
         }
 
         public override int SaveChanges()
