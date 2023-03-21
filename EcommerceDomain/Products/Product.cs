@@ -11,7 +11,7 @@ namespace EcommerceDomain
     {
         public string? Name { get; protected set; }
         public decimal? MinimumQuantity { get; protected set; }
-        public decimal? CurrentQuantity { get; protected set; }
+        public int? CurrentQuantity { get; protected set; }
         public Category? Catregory { get; protected set; }
         public DateTime? ExpiryDate { get; protected set; }
         public decimal SellPrice { get; protected set; }

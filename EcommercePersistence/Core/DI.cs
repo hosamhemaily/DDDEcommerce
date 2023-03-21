@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using EcommerceDomain.Repos;
 using EcommercePersistence.ProductManagment;
+using EcommercePersistence.Core;
 
 namespace EcommercePersistence
 {
@@ -15,6 +16,7 @@ namespace EcommercePersistence
             
 
             services.AddScoped<IrepoProduct, RepoProduct>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

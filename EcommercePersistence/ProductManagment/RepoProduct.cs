@@ -35,12 +35,18 @@ namespace EcommercePersistence.ProductManagment
             throw new NotImplementedException();
         }
 
-        public Product GetById()
+        public Product GetById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool update()
+        public bool update(Product product)
+        {
+            _context.Products.Update(product);
+            return true;
+        }
+
+        public bool updateQuantity(Guid id, int quantity)
         {
             throw new NotImplementedException();
         }
