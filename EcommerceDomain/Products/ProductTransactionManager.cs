@@ -1,11 +1,12 @@
-﻿using EcommerceDomain.Repos;
+﻿using EcommerceDomain.ProductTransactions;
+using EcommerceDomain.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceDomain.ProductTransactions
+namespace EcommerceDomain.Products
 {
     public class ProductTransactionManager : IProductTransactionManager
     {
@@ -15,14 +16,14 @@ namespace EcommerceDomain.ProductTransactions
         public ProductTransactionManager(IrepoProduct repoProduct, IrepoProductTransaction productTransaction,
             IUnitOfWork unitofwork)
         {
-            _repoProduct= repoProduct;
+            _repoProduct = repoProduct;
             _productTransaction = productTransaction;
-            _unitofwork= unitofwork;
+            _unitofwork = unitofwork;
         }
         public bool UpdateInventory(ProductTransaction productTransaction)
         {
-            var product =  _repoProduct.GetById(productTransaction.ProductId);
-            product =  Product.UpdateQuantity(product, productTransaction.Quantity);
+            var product = _repoProduct.GetById(productTransaction.ProductId);
+            product = Product.DecreaseQuantity(product, productTransaction.Quantity);
             _repoProduct.update(product);
             _productTransaction.add(productTransaction);
             _unitofwork.Save();

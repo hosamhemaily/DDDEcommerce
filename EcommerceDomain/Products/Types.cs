@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceDomain.ProductTransactions
+namespace EcommerceDomain.Products
 {
     public enum Types
     {

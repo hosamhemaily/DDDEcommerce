@@ -16,8 +16,14 @@ namespace EcommerceDomain
             return product;
         }
 
-        public static Product UpdateQuantity(Product product,int quantity)
+        public static Product DecreaseQuantity(Product product,int quantity)
         {
+            if (quantity <= 0)            
+                throw new ArgumentException();
+            
+            if (product == null)            
+                throw new ArgumentNullException();
+            
             product.CurrentQuantity = product.CurrentQuantity-quantity;
             return product;
         }
