@@ -10,7 +10,7 @@ namespace EcommercePersistence.Core
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ProductContext _productContext;
-        UnitOfWork(ProductContext context) 
+        public UnitOfWork(ProductContext context) 
         {
             _productContext = context;
         }

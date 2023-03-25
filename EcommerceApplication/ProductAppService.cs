@@ -14,7 +14,8 @@ namespace EcommerceApplication
         }
         public List<ProductGetBase> Get()
         {
-            return _product.GetAll().Select(x=>new ProductGetBase { Catregory = x.Catregory?.Id,
+            var p = _product.GetAll();
+            return p.Select(x=>new ProductGetBase { Catregory = x.Catregory?.Id,
             CurrentQuantity= x.CurrentQuantity,
             ExpiryDate= x.ExpiryDate,
             MinimumQuantity= x.MinimumQuantity,

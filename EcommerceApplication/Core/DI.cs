@@ -13,6 +13,7 @@ namespace EcommerceApplication.Application
         public static IServiceCollection RegisterApplication(this IServiceCollection services)
         {
             services.AddScoped<IProductAppService, ProductAppService>();
+            services.AddScoped<IOrderAppService, OrderAppService>();
             return services;
         }
     }
