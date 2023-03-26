@@ -2,6 +2,6 @@
 {
     public interface IOrderAppService
     {
-        public bool OrderDonePurshase();
+        public bool OrderDonePurshase(OrderDTO order);
     }
 }

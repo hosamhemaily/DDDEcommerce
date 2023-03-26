@@ -16,15 +16,30 @@ builder.Services.RegisterPersistence(builder.Configuration["Database"].ToString(
 
 builder.Services.RegisterApplication();
 
-builder.Services.AddMassTransit(mt => mt.UsingRabbitMq((cntxt, cfg) => {
-    cfg.Host("localhost", "/", c => {
-        c.Username("guest");
-        c.Password("guest");
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<OrderCreatedConsumer>();
+    config.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host("amqp://guest:guest@localhost:5672");
+        cfg.ReceiveEndpoint("order-qu", c =>
+        {
+            c.ConfigureConsumer<OrderCreatedConsumer>(ctx);
+        });
     });
-    cfg.ReceiveEndpoint("order-created", (c) => {
-        c.Consumer<OrderCreatedConsumer>();
-    });
-}));
+});
+
+
+//builder.Services.AddMassTransit(mt => mt.UsingRabbitMq((cntxt, cfg) => {
+//    cfg.Host("localhost", "/", c => {
+//        c.Username("guest");
+//        c.Password("guest");
+//    });
+//    cfg.ReceiveEndpoint("order-queue", (c) => {
+
+//        c.Consumer<OrderCreatedConsumer>();
+//    });
+//}));
 
 var app = builder.Build();
 

@@ -37,7 +37,7 @@ namespace EcommercePersistence.ProductManagment
 
         public Product GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Find(id);
         }
 
         public bool update(Product product)
@@ -46,9 +46,12 @@ namespace EcommercePersistence.ProductManagment
             return true;
         }
 
-        public bool updateQuantity(Guid id, int quantity)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool updateQuantity(Guid id, int quantity)
+        //{
+        //    var result =  _context.Products.Find(id);
+        //    result.CurrentQuantity = 100;
+        //    _context.Products.Update(result);
+        //    throw new NotImplementedException();
+        //}
     }
 }
