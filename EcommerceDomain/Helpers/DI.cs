@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EcommerceDomain.Products.MyProduct;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace EcommerceDomain
     {
         public static IServiceCollection RegisterDomain(this IServiceCollection services)
         {
+            services.AddScoped<IProductManager,ProductManager>();
             return services;
         }
     }

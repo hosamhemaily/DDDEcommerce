@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using EcommerceDomain.Products;
+using EcommerceDomain.Products.Events;
 
 namespace EcommerceDomain.ProductTransactions
 {

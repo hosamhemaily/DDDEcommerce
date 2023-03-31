@@ -1,6 +1,6 @@
 ﻿using EcommerceDomain;
-using EcommerceDomain.Products;
 using EcommerceDomain.Products.Events;
+using EcommerceDomain.Products.ProductTransaction;
 using EcommerceDomain.Repos;
 using MediatR;
 using Microsoft.Extensions.Logging;

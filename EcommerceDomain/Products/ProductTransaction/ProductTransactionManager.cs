@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceDomain.Products
+namespace EcommerceDomain.Products.ProductTransaction
 {
     public class ProductTransactionManager : IProductTransactionManager
     {
@@ -21,7 +21,7 @@ namespace EcommerceDomain.Products
             _unitofwork = unitofwork;
         }
 
-       
+
         public bool UpdateInventory(Guid id, int quantity)
         {
             var product = _repoProduct.GetById(id);
@@ -34,6 +34,6 @@ namespace EcommerceDomain.Products
 
     public interface IProductTransactionManager
     {
-        bool UpdateInventory(Guid id,int quantity);
+        bool UpdateInventory(Guid id, int quantity);
     }
 }

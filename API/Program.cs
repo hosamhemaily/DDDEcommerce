@@ -2,6 +2,7 @@
 using EcommerceApplication;
 using EcommerceApplication.Application;
 using EcommerceApplication.EventHandlers;
+using EcommerceDomain;
 using EcommerceDomain.Products.Events;
 using EcommercePersistence;
 using MassTransit;
@@ -18,6 +19,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterDomain();
 builder.Services.RegisterPersistence(builder.Configuration["Database"].ToString());
 
 builder.Services.RegisterApplication();
