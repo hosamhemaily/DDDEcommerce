@@ -13,23 +13,36 @@ namespace EcommerceApplication
 {
     public class OrderCreatedConsumer : IConsumer<OrderCreated>
     {
+        private readonly IPublishEndpoint _publishEndpoint;
+
         IOrderAppService _orderAppService;
         public OrderCreatedConsumer(
-            IOrderAppService orderAppService
-            )
+            IOrderAppService orderAppService,
+            IPublishEndpoint publishEndpoint)
         {
             _orderAppService= orderAppService;
-        }
+            _publishEndpoint = publishEndpoint;
 
-      
-        public async Task Consume(ConsumeContext<OrderCreated> context)
+    }
+
+
+    public async Task Consume(ConsumeContext<OrderCreated> context)
         {
-            //var jsonMessage = JsonConvert.SerializeObject(context.Message);
-            _orderAppService.OrderDonePurshase(new OrderDTO
+            try
             {
-                ID = context.Message.ID,
-                Products = context.Message.Products.Select(x => new EcommerceContract.ProductDTO { productid = x.productid, quantity = x.quantity }).ToList()
-            });
+                _orderAppService.OrderDonePurshase(new OrderDTO
+                {
+                    ID = context.Message.ID,
+                    Products = context.Message.Products.Select(x => new EcommerceContract.ProductDTO { productid = x.productid, quantity = x.quantity }).ToList()
+                });
+            }
+            catch (Exception)
+            {
+                _publishEndpoint.Publish(new OrderFailed { id = context.Message.ID });
+                
+            }
+            //var jsonMessage = JsonConvert.SerializeObject(context.Message);
+         
           //  Console.WriteLine($"OrderCreated message: {jsonMessage}");
         }
     }

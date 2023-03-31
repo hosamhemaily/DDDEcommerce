@@ -1,7 +1,7 @@
 ﻿
 namespace EcommerceDomain
 {
-    public partial class Product: IAggregateRoot
+    public partial class Product: AggregateRoot
     {
         public static Product Create(string Name,decimal? Minimum,Guid ID,int quantity) 
         {

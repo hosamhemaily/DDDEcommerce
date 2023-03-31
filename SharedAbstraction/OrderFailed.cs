@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceDomain.Products
+namespace SharedAbstraction
 {
-    public enum Types
+    public class OrderFailed
     {
-        InStock,
-        OutStock
-        
+        public Guid id { get; set; }
     }
 }

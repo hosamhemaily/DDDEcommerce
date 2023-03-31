@@ -16,6 +16,7 @@ namespace EcommercePersistence
             
 
             services.AddScoped<IrepoProduct, RepoProduct>();
+            services.AddScoped<IrepoProductTransaction, repoProductTransaction>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }

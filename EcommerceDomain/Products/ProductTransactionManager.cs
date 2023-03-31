@@ -20,19 +20,20 @@ namespace EcommerceDomain.Products
             _productTransaction = productTransaction;
             _unitofwork = unitofwork;
         }
-        public bool UpdateInventory(ProductTransaction productTransaction)
+
+       
+        public bool UpdateInventory(Guid id, int quantity)
         {
-            var product = _repoProduct.GetById(productTransaction.ProductId);
-            product = Product.DecreaseQuantity(product, productTransaction.Quantity);
+            var product = _repoProduct.GetById(id);
+            product = Product.DecreaseQuantity(product, quantity);
             _repoProduct.update(product);
-            _productTransaction.add(productTransaction);
-            _unitofwork.Save();
+
             return true;
         }
     }
 
     public interface IProductTransactionManager
     {
-        bool UpdateInventory(ProductTransaction transaction);
+        bool UpdateInventory(Guid id,int quantity);
     }
 }

@@ -7,7 +7,7 @@ using EcommerceDomain.Products;
 
 namespace EcommerceDomain.ProductTransactions
 {
-    public partial class ProductTransaction :Entity
+    public partial class ProductTransaction :AggregateRoot
     {
         public Guid ProductId { get; protected set; }
         public Types transactiontype { get; protected set; }

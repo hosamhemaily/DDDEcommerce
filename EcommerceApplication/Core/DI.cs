@@ -14,6 +14,7 @@ namespace EcommerceApplication.Application
         {
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IOrderAppService, OrderAppService>();
+            services.AddScoped<IProductTransactionAppService, ProductTransactionAppService>();
             return services;
         }
     }

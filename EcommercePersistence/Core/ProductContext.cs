@@ -1,4 +1,6 @@
 ﻿using EcommerceDomain;
+using EcommerceDomain.ProductTransactions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommercePersistence
@@ -6,12 +8,14 @@ namespace EcommercePersistence
     public class ProductContext : DbContext
     {
 
+        private readonly IMediator _mediator;
 
         public DbSet<Product> Products { get; set; }
-        public ProductContext(DbContextOptions<ProductContext> options)
+        public DbSet<ProductTransaction> Producttransactions { get; set; }
+        public ProductContext(DbContextOptions<ProductContext> options, IMediator mediator)
           : base(options)
         {
-           
+           _mediator= mediator;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,8 +28,25 @@ namespace EcommercePersistence
 
         public override int SaveChanges()
         {
+            _dispatchDomainEvents().GetAwaiter().GetResult();
             var response = base.SaveChanges();
             return response;
+        }
+
+        private async Task _dispatchDomainEvents()
+        {
+            var domainEventEntities = ChangeTracker.Entries<AggregateRoot>()
+                .Select(po => po.Entity)
+                .Where(po => po.DomainEvents.Any())
+                .ToArray();
+
+            foreach (var entity in domainEventEntities)
+            {
+                var events = entity.DomainEvents.ToArray();
+                entity.DomainEvents.Clear();
+                foreach (var entityDomainEvent in events)
+                    await _mediator.Publish(entityDomainEvent);
+            }
         }
 
 

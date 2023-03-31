@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceDomain
 {
-    public partial class Product : Entity
+    public partial class Product : AggregateRoot
     {
         public string? Name { get; protected set; }
         public decimal? MinimumQuantity { get; protected set; }

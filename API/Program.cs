@@ -1,8 +1,14 @@
 
 using EcommerceApplication;
 using EcommerceApplication.Application;
+using EcommerceApplication.EventHandlers;
+using EcommerceDomain.Products.Events;
 using EcommercePersistence;
 using MassTransit;
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +46,10 @@ builder.Services.AddMassTransit(config =>
 //        c.Consumer<OrderCreatedConsumer>();
 //    });
 //}));
+
+builder.Services.AddScoped(typeof(INotificationHandler<ProductTransactionEventAdded>), typeof( ProductTransactionDomainEventHandler));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
 
 var app = builder.Build();
 
