@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceApplication
+namespace EcommerceApplication.Event
 {
     public class OrderCreatedConsumer : IConsumer<OrderCreated>
     {
@@ -20,13 +20,13 @@ namespace EcommerceApplication
             IOrderAppService orderAppService,
             IPublishEndpoint publishEndpoint)
         {
-            _orderAppService= orderAppService;
+            _orderAppService = orderAppService;
             _publishEndpoint = publishEndpoint;
 
-    }
+        }
 
 
-    public async Task Consume(ConsumeContext<OrderCreated> context)
+        public async Task Consume(ConsumeContext<OrderCreated> context)
         {
             try
             {
@@ -39,11 +39,11 @@ namespace EcommerceApplication
             catch (Exception)
             {
                 _publishEndpoint.Publish(new OrderFailed { id = context.Message.ID });
-                
+
             }
             //var jsonMessage = JsonConvert.SerializeObject(context.Message);
-         
-          //  Console.WriteLine($"OrderCreated message: {jsonMessage}");
+
+            //  Console.WriteLine($"OrderCreated message: {jsonMessage}");
         }
     }
 }

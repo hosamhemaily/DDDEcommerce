@@ -1,6 +1,5 @@
-
-using EcommerceApplication;
 using EcommerceApplication.Application;
+using EcommerceApplication.Event;
 using EcommerceApplication.EventHandlers;
 using EcommerceDomain;
 using EcommerceDomain.Products.Events;
@@ -27,12 +26,18 @@ builder.Services.RegisterApplication();
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<OrderCreatedConsumer>();
+    config.AddConsumer<OrderCanceledConsumer>();
     config.UsingRabbitMq((ctx, cfg) =>
     {
         cfg.Host("amqp://guest:guest@localhost:5672");
         cfg.ReceiveEndpoint("order-qu", c =>
         {
             c.ConfigureConsumer<OrderCreatedConsumer>(ctx);
+        });
+        
+        cfg.ReceiveEndpoint("order-qu-canceled", c =>
+        {
+            c.ConfigureConsumer<OrderCanceledConsumer>(ctx);
         });
     });
 });

@@ -1,4 +1,5 @@
 ﻿using EcommerceDomain.Products.MyProduct;
+using EcommerceDomain.Products.ProductTransaction;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace EcommerceDomain
         public static IServiceCollection RegisterDomain(this IServiceCollection services)
         {
             services.AddScoped<IProductManager,ProductManager>();
+            services.AddScoped<IProductTransactionManager,ProductTransactionManager>();
             return services;
         }
     }

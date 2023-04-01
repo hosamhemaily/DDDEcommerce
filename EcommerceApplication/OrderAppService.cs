@@ -30,19 +30,18 @@ namespace EcommerceApplication
             _unitofwork= unitofwork;
         }
 
+        public bool OrderCanceled(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool OrderDonePurshase(OrderDTO order)
         {
           
             //update avialable quantity for the product to be decreased for every product with order quantity
             foreach (var item in order.Products)
             {
-                //var product =  _product.GetById(item.productid);
-                //var p =  Product.DecreaseQuantity(product, item.quantity);
-                //_product.update(p);
-                //var transaction = ProductTransaction.Create(item.quantity, item.productid, Types.purshase);
-                //_productTransaction.add(transaction);
-                _product.DecreaseQuantity(item.productid, item.quantity);
-                
+                _product.DecreaseQuantity(item.productid, item.quantity);                
             }
             _unitofwork.Save();
             // throw new NotImplementedException();
