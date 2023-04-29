@@ -3,6 +3,6 @@
     public interface IOrderAppService
     {
         public bool OrderDonePurshase(OrderDTO order);
-        public bool OrderCanceled(Guid id);
+        public bool OrderCanceled(OrderDTO order);
     }
 }

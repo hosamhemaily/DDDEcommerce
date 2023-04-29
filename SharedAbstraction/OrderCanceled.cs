@@ -8,6 +8,7 @@ namespace SharedAbstraction
 {
     public class OrderCanceled
     {
-        public Guid id { get; set; }
+        public Guid ID { get; set; }
+        public IList<ProductDTO> Products { get; set; }
     }
 }

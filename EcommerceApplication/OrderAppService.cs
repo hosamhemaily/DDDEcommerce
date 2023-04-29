@@ -30,9 +30,14 @@ namespace EcommerceApplication
             _unitofwork= unitofwork;
         }
 
-        public bool OrderCanceled(Guid id)
+        public bool OrderCanceled(OrderDTO order)
         {
-            throw new NotImplementedException();
+            foreach (var item in order.Products)
+            {
+                _product.IncreaseQuantity(item.productid, item.quantity);
+            }
+            _unitofwork.Save();
+            return true;
         }
 
         public bool OrderDonePurshase(OrderDTO order)
@@ -44,7 +49,6 @@ namespace EcommerceApplication
                 _product.DecreaseQuantity(item.productid, item.quantity);                
             }
             _unitofwork.Save();
-            // throw new NotImplementedException();
             return true;
         }
     }

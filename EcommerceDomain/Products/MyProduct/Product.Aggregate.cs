@@ -27,5 +27,17 @@ namespace EcommerceDomain
             product.CurrentQuantity = product.CurrentQuantity-quantity;
             return product;
         }
+        
+        public static Product IncreaseQuantity(Product product,int quantity)
+        {
+            if (quantity <= 0)            
+                throw new ArgumentException();
+            
+            if (product == null)            
+                throw new ArgumentNullException();
+            
+            product.CurrentQuantity = product.CurrentQuantity+quantity;
+            return product;
+        }
     }
 }
