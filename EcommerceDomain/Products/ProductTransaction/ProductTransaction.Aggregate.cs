@@ -20,6 +20,7 @@ namespace EcommerceDomain.ProductTransactions
                 transactionDate = DateTime.Now,
                 transactiontype = types
             };
+            //after create product transaction , automaically products quantity will decreased assyming it is decrease operation
             pt.AddDomainEvent(new ProductTransactionEventAdded() { productid=productid,quantity=quantity});
             return pt;
         }
