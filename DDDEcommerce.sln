@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcommerceApplication", "Eco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcommerceContract", "EcommerceContract\EcommerceContract.csproj", "{67053195-E777-4638-910F-419D514A5422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedAbstraction", "SharedAbstraction\SharedAbstraction.csproj", "{58F71C70-0CDA-4650-A63C-34BDD1A86AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedAbstraction", "SharedAbstraction\SharedAbstraction.csproj", "{58F71C70-0CDA-4650-A63C-34BDD1A86AF4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9A03E05C-0149-4BF5-96A5-6BD1E22CCB65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{58F71C70-0CDA-4650-A63C-34BDD1A86AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F71C70-0CDA-4650-A63C-34BDD1A86AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F71C70-0CDA-4650-A63C-34BDD1A86AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A03E05C-0149-4BF5-96A5-6BD1E22CCB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A03E05C-0149-4BF5-96A5-6BD1E22CCB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A03E05C-0149-4BF5-96A5-6BD1E22CCB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A03E05C-0149-4BF5-96A5-6BD1E22CCB65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

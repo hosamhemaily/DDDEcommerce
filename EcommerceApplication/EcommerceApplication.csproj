@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EcommerceContract\EcommerceContract.csproj" />
     <ProjectReference Include="..\EcommerceDomain\EcommerceDomain.csproj" />
+    <ProjectReference Include="..\SharedAbstraction\SharedAbstraction.csproj" />
   </ItemGroup>
 
   <ItemGroup>

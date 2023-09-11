@@ -15,18 +15,18 @@ namespace EcommerceApplication
     public class OrderAppService : IOrderAppService
     {
         IProductManager _product;
-        //IrepoProductTransaction _productTransaction;
+        IrepoProductTransaction _productTransaction;
         IUnitOfWork _unitofwork;
 
         public OrderAppService(
-            IProductManager product
+            IProductManager product,
   
-            //IrepoProductTransaction productTransaction
+            IrepoProductTransaction productTransaction
             , IUnitOfWork unitofwork
             )
         {
             _product= product;
-            //_productTransaction= productTransaction;
+            _productTransaction= productTransaction;
             _unitofwork= unitofwork;
         }
 
@@ -46,8 +46,11 @@ namespace EcommerceApplication
             //update avialable quantity for the product to be decreased for every product with order quantity
             foreach (var item in order.Products)
             {
-                _product.DecreaseQuantity(item.productid, item.quantity);                
+                //_product.DecreaseQuantity(item.productid, item.quantity);
+                var pt =  ProductTransaction.Create(item.quantity, item.productid, Types.OutStock);
+                _productTransaction.add(pt);
             }
+            
             _unitofwork.Save();
             return true;
         }

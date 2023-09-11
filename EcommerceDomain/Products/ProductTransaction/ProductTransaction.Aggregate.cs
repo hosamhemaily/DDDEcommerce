@@ -20,6 +20,7 @@ namespace EcommerceDomain.ProductTransactions
                 transactionDate = DateTime.Now,
                 transactiontype = types
             };
+            //update quantity of product 
             pt.AddDomainEvent(new ProductTransactionEventAdded() { productid=productid,quantity=quantity});
             return pt;
         }

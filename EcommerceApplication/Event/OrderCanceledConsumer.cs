@@ -30,7 +30,10 @@ namespace EcommerceApplication.Event
         {
             try
             {
-                _orderAppService.OrderCanceled(context.Message.id);
+                var order = new OrderDTO();
+                order.Products = context.Message.Products.Select(x=>new EcommerceContract.ProductDTO { productid = x.productid,quantity = x.quantity}).ToList();
+                order.ID = context.Message.ID;
+                _orderAppService.OrderCanceled(order);
             }
             catch (Exception)
             {
